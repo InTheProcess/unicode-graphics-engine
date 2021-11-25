@@ -1,0 +1,5 @@
+1) Display looping bug
+  The display loops values that went off screen.
+  Implementation of a looping screen is intended,
+  but not in the way it was programmed.  Need a
+  none looping option too.
