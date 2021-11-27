@@ -1,22 +1,32 @@
+require("libs.utils")
+dofile("config.lua")
+require("libs.logger")
+
+
 Canvas = {}
 
 local data = {}
-require("utils")
 
 Canvas.new = function(x,y,w,h)
 
   --[[This function is responsible for resetting all of the
       characters on screen to there default values--]]
-  Canvas.load = function(c)
-    local c = c or "." --Sets the background characters
+  Canvas.reset = function(c)
+    local c = c or "\u{002E}" --Sets the background characters
     --This sets the value of each index to be the desired character
     for i=1,w*h do
       data[i] = c
     end
   end
 
+  Canvas.load = function()
+    new_log()
+    Canvas.reset()
+  end
+
   --This function is responsible for drawing stuff in the console
   Canvas.draw = function()
+    log("Reset")
     clear()
     --Writes all data to the screen in the form of characters
     for i,v in ipairs(data) do
@@ -31,7 +41,7 @@ Canvas.new = function(x,y,w,h)
           completed its rows--]]
       if i/w == math.floor(i/w) then print("") end --Simply checks if i/w is a whole number
      end
-     Canvas.load()
+     Canvas.reset()
   end
 
     --This function plots a point at the desired coords
